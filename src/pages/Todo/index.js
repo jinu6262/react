@@ -29,7 +29,7 @@ function TodoPage() {
         *백엔드 -> 서버 -> 주소가 있을 것
         ex) 프론트엔드 -> 백엔드 데이터 요청
         axios.get("www.백엔드주소.com/todo/123")
-        axios.get("www.백엔드주소.com/todo?todo_id=32") *
+        axios.get("www.백엔드주소.com/todo?todo_id=32") *기본
         or
         axios.get("www.백엔드주소.com/todo, {todo_id=32}")
 
