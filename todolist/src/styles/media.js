@@ -27,5 +27,5 @@ export const media = {
     desktopS: medieaQurey(desktopS),
     desktopM: medieaQurey(desktopM),
     desktopL: medieaQurey(desktopL),
-    custom: (maxWidth) => medieaQurey(maxWidth),
+    custom: (maxWidth) => medieaQurey(maxWidth), //객체 안에 함수를 넣은 것
 };

@@ -1,6 +1,6 @@
 // class 형 컴포넌트
 
-import { render } from "@testing-library/react";
+// import { render } from "@testing-library/react";
 
 //     class 라고 하는 것은 react 초창기 때 만들어진 사용방법
 //     state(리엑트의 상태) => this.state
