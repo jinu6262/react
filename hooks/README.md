@@ -1,7 +1,3 @@
-# 리엑트 연습을 깃허브를 이용한 버전 관리 시작 10/23
-
------------------------------------------------------------
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

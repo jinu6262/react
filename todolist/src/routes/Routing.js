@@ -47,6 +47,10 @@ function Routing() {
 
                 <Route path={"/todo"} element={<TodoPage />} />
                 <Route path={"/todo/:todoId"} element={<TodoPage />} />
+                {/* 
+                    param : /
+                    qurey : ?, =, &
+                */}
             </Routes>
         </BrowserRouter>
     );

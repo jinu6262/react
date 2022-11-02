@@ -10,6 +10,7 @@ function HomePage() {
     const navigate = useNavigate(); // useNavigate를 import
 
     const onPageNavigate = (e) => {
+        console.log(`1`);
         console.log(e.target);
         // window.location.href = "/login" // a태그와 같음
         navigate("/todo" /*, { replace: true }*/); //{ replace: true } 를 주면 뒤로가기가 안된다, 흔적을 안남김

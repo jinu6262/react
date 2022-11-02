@@ -1,12 +1,18 @@
+import { ThemeProvider } from "styled-components";
 import Routing from "./routes/Routing";
 import GlobalStyles from "./styles/global";
+import { theme } from "./styles/theme";
 
 function App() {
+    //설정파일을 몰아둠
+
+    // ThemeProvider -> 특정 스타일을 전역 스코프에 지정해주고
+    // 컴포넌트에서 import 없이 받아서 사용할 수 있도록 하는 것
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <GlobalStyles />
             <Routing />
-        </>
+        </ThemeProvider>
     );
 }
 export default App;
