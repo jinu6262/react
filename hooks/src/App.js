@@ -1,5 +1,6 @@
 import AddState from "./components/addState";
 import UseMemoCallback from "./components/memoCallback";
+import UseEffect from "./components/useEffect";
 import UseRef from "./components/useRef";
 import UseState from "./components/useState";
 
@@ -10,6 +11,7 @@ function App() {
             <UseRef />
             <AddState />
             <UseMemoCallback />
+            <UseEffect />
         </>
     );
 }
