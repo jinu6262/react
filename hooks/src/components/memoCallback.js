@@ -34,6 +34,7 @@ function UseMemoCallback() {
         }
         return setMemo(true);
     }, [memo]);
+
     // useCallback은 연산의 문제가 아닌 선언의 문제, 함수 저장소
     // memo와의 차이점은 memo는 연산 후 값이 저장
     // callback은 함수를 저장하는 것이기 때문에 해당 함수를 사용해야만 한다
