@@ -9,7 +9,10 @@ function Todo({ todo, deleteTodoList, editTodoList }) {
     };
 
     const onEditTodoList = () => {
-        if (todo.todo === todoText) return;
+        if (todo.todo === todoText) {
+            setEdit(false);
+            return;
+        }
         editTodoList(todo.id, todoText);
         setEdit(false);
     };

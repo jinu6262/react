@@ -11,6 +11,7 @@ const initialState = [
 
 export const ADD_TODO = "todo/ADD_TODO";
 export const REMOVE_TODO = "todo/REMOVE_TODO";
+export const EDIT_TODO = "todo/EDIT_TODO";
 
 const todo = (state = initialState, action) => {
     switch (action.type) {
@@ -20,7 +21,11 @@ const todo = (state = initialState, action) => {
                 { id: action.payload.id, todo: action.payload.todo },
             ];
         case REMOVE_TODO:
-            return;
+            return state.filter((item) => item.id !== action.payload.id);
+        case EDIT_TODO:
+            const todo = state.find((item) => item.id === action.payload.id);
+            todo.todo = action.payload.todo;
+            return state;
         default:
             return state;
     }
