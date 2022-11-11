@@ -3,6 +3,12 @@ import {
     ADD_TODO_FAILURE,
     ADD_TODO_REQUEST,
     ADD_TODO_SCUCESS,
+    EDIT_TODO_FAILURE,
+    EDIT_TODO_REQUEST,
+    EDIT_TODO_SCUCESS,
+    REMOVE_TODO_FAILURE,
+    REMOVE_TODO_REQUEST,
+    REMOVE_TODO_SCUCESS,
 } from "../reducer/todo";
 
 function* addTodo(action) {
@@ -31,6 +37,48 @@ function* addTodo(action) {
     }
 }
 
+function* removeTodo(action) {
+    try {
+        yield delay(1000); //백엔드는 비동기이기 때문에 시간이 소요, 시간 딜레이를 구현
+        yield put({
+            type: REMOVE_TODO_SCUCESS,
+            payload: action.payload,
+            // 왔던 action 값을 그대로 전달, 원래라면 백엔드에게 받은 데이터 전달
+        });
+    } catch (err) {
+        // 실패할 때 실행할 문장
+
+        yield put({
+            type: REMOVE_TODO_FAILURE,
+            payload: {
+                error: err.response.data,
+            },
+        });
+        throw new Error(err);
+    }
+}
+
+function* editTodo(action) {
+    try {
+        yield delay(1000); //백엔드는 비동기이기 때문에 시간이 소요, 시간 딜레이를 구현
+        yield put({
+            type: EDIT_TODO_SCUCESS,
+            payload: action.payload,
+            // 왔던 action 값을 그대로 전달, 원래라면 백엔드에게 받은 데이터 전달
+        });
+    } catch (err) {
+        // 실패할 때 실행할 문장
+
+        yield put({
+            type: EDIT_TODO_FAILURE,
+            payload: {
+                error: err.response.data,
+            },
+        });
+        throw new Error(err);
+    }
+}
+
 /*
     dispatch -> 백엔드 통신 -> 성공/실패 -> dispatch 
     (pending, loading)                    (success/fullfield, failure/rejcetr)
@@ -48,10 +96,22 @@ function* watchAddTodo() {
     //takeLatest - 중복 요청 마지막 작업만 실행
 }
 
+function* watchRemoveTodo() {
+    yield takeLatest(REMOVE_TODO_REQUEST, removeTodo);
+}
+
+function* watchEditTodo() {
+    yield takeLatest(EDIT_TODO_REQUEST, editTodo);
+}
+
 // function* watchRemoveTodo() {
 //     yield takeLatest(REMOVE_TODO, "removeTodo");
 // }
 
 export default function* todoSaga() {
-    yield all([fork(watchAddTodo /*, fork(watchRemoveTodo) */)]);
+    yield all([
+        fork(watchAddTodo /*, fork(watchRemoveTodo) */),
+        fork(watchRemoveTodo),
+        fork(watchEditTodo),
+    ]);
 }

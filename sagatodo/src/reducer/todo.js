@@ -19,15 +19,32 @@ const initialState = {
         done: false,
         error: null,
     },
+    removetodo: {
+        loading: false,
+        done: false,
+        error: null,
+    },
+    edittodo: {
+        loading: false,
+        done: false,
+        error: null,
+    },
 };
 
-export const ADD_TODO = "todo/ADD_TODO";
+// export const ADD_TODO = "todo/ADD_TODO";
 export const ADD_TODO_REQUEST = "todo/ADD_TODO_REQUEST";
 export const ADD_TODO_SCUCESS = "todo/ADD_TODO_SCUCESS";
 export const ADD_TODO_FAILURE = "todo/ADD_TODO_FAILURE";
 
-export const REMOVE_TODO = "todo/REMOVE_TODO";
-export const EDIT_TODO = "todo/EDIT_TODO";
+// export const REMOVE_TODO = "todo/REMOVE_TODO";
+export const REMOVE_TODO_REQUEST = "todo/REMOVE_TODO_REQUEST";
+export const REMOVE_TODO_SCUCESS = "todo/REMOVE_TODO_SCUCESS";
+export const REMOVE_TODO_FAILURE = "todo/REMOVE_TODO_FAILURE";
+
+// export const EDIT_TODO = "todo/EDIT_TODO";
+export const EDIT_TODO_REQUEST = "todo/EDIT_TODO_REQUEST";
+export const EDIT_TODO_SCUCESS = "todo/EDIT_TODO_SCUCESS";
+export const EDIT_TODO_FAILURE = "todo/EDIT_TODO_FAILURE";
 
 const todo = (state = initialState, action) => {
     return produce(state, (draft) => {
@@ -67,16 +84,58 @@ const todo = (state = initialState, action) => {
                 draft.addtodo.done = true;
                 draft.addtodo.error = action.payload.error;
                 break;
-            case REMOVE_TODO:
+            //-----------------------------------------------------
+            // case REMOVE_TODO:
+            //     draft.todos = draft.todos.filter(
+            //         (item) => item.id !== action.payload.id
+            //     );
+            //     break;
+            case REMOVE_TODO_REQUEST:
+                draft.removetodo.loading = true;
+                draft.removetodo.done = false;
+                draft.removetodo.error = null;
+                break;
+            case REMOVE_TODO_SCUCESS:
+                draft.removetodo.loading = false;
+                draft.removetodo.done = true;
+                draft.removetodo.error = null;
+
                 draft.todos = draft.todos.filter(
                     (item) => item.id !== action.payload.id
                 );
                 break;
-            case EDIT_TODO:
+            case REMOVE_TODO_FAILURE:
+                draft.removetodo.loading = false;
+                draft.removetodo.done = true;
+                draft.removetodo.error = action.payload.error;
+                break;
+            //-----------------------------------------------------
+            // case EDIT_TODO:
+            //     const todo = draft.todos.find(
+            //         (item) => item.id === action.payload.id
+            //     );
+            //     todo.todo = action.payload.todo;
+            //     break;
+
+            case EDIT_TODO_REQUEST:
+                draft.edittodo.loading = true;
+                draft.edittodo.done = false;
+                draft.edittodo.error = null;
+                break;
+            case EDIT_TODO_SCUCESS:
+                draft.edittodo.loading = false;
+                draft.edittodo.done = true;
+                draft.edittodo.error = null;
+
                 const todo = draft.todos.find(
                     (item) => item.id === action.payload.id
                 );
                 todo.todo = action.payload.todo;
+                break;
+            case EDIT_TODO_FAILURE:
+                draft.edittodo.loading = false;
+                draft.edittodo.done = true;
+                draft.edittodo.error = action.payload.error;
                 break;
             default:
                 return state;

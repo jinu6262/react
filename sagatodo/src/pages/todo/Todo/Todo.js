@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { EDIT_TODO, REMOVE_TODO } from "../../../reducer/todo";
+import { EDIT_TODO_REQUEST, REMOVE_TODO_REQUEST } from "../../../reducer/todo";
 
 function Todo({ todo }) {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ function Todo({ todo }) {
     const onDeleteTodoList = (e) => {
         console.log(e);
         dispatch({
-            type: REMOVE_TODO,
+            type: REMOVE_TODO_REQUEST,
             payload: {
                 id: todo.id,
             },
@@ -33,7 +33,7 @@ function Todo({ todo }) {
             return;
         }
         dispatch({
-            type: EDIT_TODO,
+            type: EDIT_TODO_REQUEST,
             payload: {
                 id: todo.id,
                 todo: text,
