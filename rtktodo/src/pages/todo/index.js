@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ADD_TODO_REQUEST } from "../../reducer/todo";
+import { addtodo } from "../../reducer/todo";
+
 import Todo from "./Todo/Todo";
 
 function TodoPage() {
@@ -23,13 +24,13 @@ function TodoPage() {
             lastId = 0;
         }
 
-        dispatch({
-            type: ADD_TODO_REQUEST,
-            payload: {
-                id: lastId + 1,
-                todo: todo,
-            },
-        });
+        const data = {
+            id: lastId + 1,
+            todo,
+        };
+
+        dispatch(addtodo(data));
+        // dispatch(addtodo({ id: lastId + 1, todo }));
         setTodo("");
     };
 

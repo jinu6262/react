@@ -1,5 +1,9 @@
 import { all, delay, fork, put, takeLatest } from "redux-saga/effects";
-import { ADD_TODO } from "../reducer/todo";
+import {
+    ADD_TODO_FAILURE,
+    ADD_TODO_REQUEST,
+    ADD_TODO_SCUCESS,
+} from "../reducer/todo";
 
 function* addTodo(action) {
     //여기서의 action은 takeLatest가 받은(캐치한) action
@@ -10,7 +14,7 @@ function* addTodo(action) {
 
         /* 성공했으면 put */
         yield put({
-            type: "성공했을때 type",
+            type: ADD_TODO_SCUCESS,
             payload: action.payload,
             // 왔던 action 값을 그대로 전달, 원래라면 백엔드에게 받은 데이터 전달
         });
@@ -18,8 +22,10 @@ function* addTodo(action) {
         // 실패할 때 실행할 문장
 
         yield put({
-            type: "실패했을 때 type",
-            payload: err.response.data,
+            type: ADD_TODO_FAILURE,
+            payload: {
+                error: err.response.data,
+            },
         });
         throw new Error(err);
     }
@@ -38,7 +44,7 @@ function* addTodo(action) {
     해당 action_type을 캐치(action을 캐치)
 */
 function* watchAddTodo() {
-    yield takeLatest(ADD_TODO, addTodo);
+    yield takeLatest(ADD_TODO_REQUEST, addTodo);
     //takeLatest - 중복 요청 마지막 작업만 실행
 }
 
