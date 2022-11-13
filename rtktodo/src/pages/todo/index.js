@@ -11,10 +11,30 @@ function TodoPage() {
 
     const dispatch = useDispatch();
 
-    const [todo, setTodo] = useState("");
-    const onChangeTodoInput = (e) => {
-        setTodo(e.target.value);
-    };
+    //input의 value를 state에 저장
+    // const [todo, setTodo] = useState("");
+    // const onChangeTodoInput = (e) => {
+    //     setTodo(e.target.value);
+    // };
+    const [todo, onChangeTodoInput, setTodo] = useInput("");
+    // const [userId, onChangeUserId] = useInput("");
+
+    //판을 만들고 찍어내는 것, 모듈화 및 컴포넌트화
+
+    // 커스텀 훅은 = 재사용성, 코드를 줄이기위해 사용도 하지만
+    // 뷰에서 로직을 숨기기 위해서도 사용한다
+
+    /*
+        회원가입페이지에 이런 input이 최소 5개 이상
+        그러면 모든 input마다 이함수를 만들어주어야 하는가
+
+        중복성 코드를 줄이고, 자동화 => 개발자
+
+        단일책임원칙을 지킬 수 있음
+        하나의 모듈은 하나의 기능만 해야한다
+        훅함수화 시킴으로서 모듈화가 되고, 해당 모듈은 하나의 기능을 수행
+        뷰에서 로직도 숨김
+    */
 
     const onAddTodoList = () => {
         let lastId;
