@@ -1,0 +1,21 @@
+라이브러리 정의
+
+필요한 라이브러리 
+
+react-router-dom
+styled-components styled-reset
+react-redux redux @redux-toolkit/js
+axios 
+
+-D
+redux-logger
+
+npm i react-router-dom
+npm i styled-components
+npm i styled-reset
+npm i react-redux redux
+npm i @reduxjs/toolkit
+npm i axios
+
+npm i -D redux-logger
+
