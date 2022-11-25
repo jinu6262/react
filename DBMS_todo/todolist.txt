@@ -19,3 +19,35 @@ npm i axios
 
 npm i -D redux-logger
 
+-------------------------------------
+
+스토리보드
+    퍼블리싱 - 퍼블리싱
+    백엔드 - db설계, 서버 
+    프론트 - 
+        1. 컴포넌트 구조
+            [재사용]
+        2. 외부 오픈소스 라이브러리
+        3. test code 작성 [TDD]
+        4. 각 페이지에 필요한 api들을 머릿속으로 설계
+            [input 값을 계산]
+            [state가 언제 어떤 state가 바뀌어야 랜더링을 최적화]
+            [input  값을 통해서 어떻게하면 내가 원하는 output을 얻을 수 있는가]
+            [공용 커스텀 훅, 공용 유틸 함수]
+            [재사용]
+        5. 컴포넌트화, state화, -> 랜더링 ()
+        6. mocking data, mocking api를 통해서 데이터 통신까지 구현
+
+------------------------------------
+필요한 api?
+
+home page 
+
+    login api 
+    signup api 
+
+todolist page 
+
+
+
+
