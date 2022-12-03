@@ -15,7 +15,9 @@ export class TodoService {
     }
     static async read(req, res, next) {
         try {
-            const todo = await Todo.findAll();
+            const todo = await Todo.findAll({
+                order: [["createdAt", "DESC"]],
+            });
             res.status(200).json(SuccessData(todo));
         } catch (err) {
             HandlerError(err, next);
